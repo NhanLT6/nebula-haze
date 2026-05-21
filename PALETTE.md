@@ -34,7 +34,7 @@
 | Level   | Hex      | HSL (approx)    | Used for                                                                                                                                                                 |
 |---------|----------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | whisper | `c2c0e8` | 245°, 45%, 83%  | TS type parameter, annotation attribute name                                                                                                                             |
-| dim     | `9480c8` | 257°, 40%, 65%  | Template variable                                                                                                                                                        |
+| dim     | `9480c8` | 257°, 40%, 65%  | Template variable; Markdown header marker (`#`)                                                                                                                          |
 | mid     | `c498ff` | 257°, 100%, 80% | Keyword, predefined symbol, delegate, JS if/else/try/yield/module keyword                                                                                                |
 | bright  | `dbbeff` | 263°, 100%, 87% | Class name, abstract class, class reference, typedef, static class, namespace, type parameter, Scala predefined, Razor/ASP directive; also HTML/XML/CSS/JSX/Vue tag name |
 

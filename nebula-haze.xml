@@ -1662,7 +1662,7 @@
     </option>
     <option name="MARKDOWN_HEADER_MARKER">
       <value>
-        <option name="FOREGROUND" value="565f89" />
+        <option name="FOREGROUND" value="9480c8" />
       </value>
     </option>
     <option name="MARKDOWN_BOLD">
@@ -1673,8 +1673,7 @@
     </option>
     <option name="MARKDOWN_BOLD_MARKER">
       <value>
-        <option name="FOREGROUND" value="565f89" />
-        <option name="FONT_TYPE" value="1" />
+        <option name="FOREGROUND" value="7494c8" />
       </value>
     </option>
     <option name="MARKDOWN_ITALIC">
@@ -1685,8 +1684,7 @@
     </option>
     <option name="MARKDOWN_ITALIC_MARKER">
       <value>
-        <option name="FOREGROUND" value="565f89" />
-        <option name="FONT_TYPE" value="2" />
+        <option name="FOREGROUND" value="7494c8" />
       </value>
     </option>
     <option name="MARKDOWN_CODE_BLOCK">
@@ -1699,14 +1697,13 @@
     </option>
     <option name="MARKDOWN_CODE_SPAN">
       <value>
-        <option name="FOREGROUND" value="a5bcf0" />
-        <option name="FONT_TYPE" value="2" />
+        <option name="FOREGROUND" value="d4d07a" />
+        <option name="BACKGROUND" value="2a2e48" />
       </value>
     </option>
     <option name="MARKDOWN_CODE_SPAN_MARKER">
       <value>
-        <option name="FOREGROUND" value="565f89" />
-        <option name="FONT_TYPE" value="2" />
+        <option name="FOREGROUND" value="7494c8" />
       </value>
     </option>
     <option name="MARKDOWN_LINK_TEXT">
@@ -1742,13 +1739,12 @@
     </option>
     <option name="MARKDOWN_LIST_MARKER">
       <value>
-        <option name="FOREGROUND" value="a5bcf0" />
-        <option name="FONT_TYPE" value="2" />
+        <option name="FOREGROUND" value="7494c8" />
       </value>
     </option>
     <option name="MARKDOWN_HRULE">
       <value>
-        <option name="FOREGROUND" value="565f89" />
+        <option name="FOREGROUND" value="7494c8" />
       </value>
     </option>
     <option name="MARKDOWN_IMAGE">
@@ -1775,7 +1771,9 @@
       </value>
     </option>
     <option name="MARKDOWN_TABLE_SEPARATOR">
-      <value />
+      <value>
+        <option name="FOREGROUND" value="7494c8" />
+      </value>
     </option>
     <option name="MARKDOWN_BLOCK_QUOTE">
       <value>
@@ -1785,8 +1783,7 @@
     </option>
     <option name="MARKDOWN_BLOCK_QUOTE_MARKER">
       <value>
-        <option name="FOREGROUND" value="a5bcf0" />
-        <option name="FONT_TYPE" value="2" />
+        <option name="FOREGROUND" value="7494c8" />
       </value>
     </option>
     <option name="MARKDOWN_AUTO_LINK">

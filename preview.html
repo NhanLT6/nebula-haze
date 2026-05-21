@@ -44,24 +44,24 @@ const PALETTE = {
 
 // ── TOKEN_SLOTS: css-class suffix → palette slot ─────────────────────────────
 const TOKEN_SLOTS = {
-  kw:   'violet-mid',
-  cls:  'violet-bright',
-  fn:   'blue-mid',
-  pm:   'teal-whisper',
-  str:  'green-bright',
-  num:  'sand-mid',
-  cmt:  'comment',
-  cst:  'teal-mid',
-  ifc:  'green-mid',
-  ann:  'blue-bright',
-  op:   'orange-mid',
-  attr: 'teal-bright',
-  tag:  'violet-bright',
-  tp:   'violet-bright',
-  wtp:  'violet-whisper',
-  esc:  'blue-dim',
-  pl:   'plain',
-  tmpl: 'violet-dim',
+  kw:     'violet-mid',
+  cls:    'violet-bright',
+  fn:     'blue-mid',
+  pm:     'teal-whisper',
+  str:    'green-bright',
+  num:    'sand-mid',
+  cmt:    'comment',
+  cst:    'teal-mid',
+  ifc:    'green-mid',
+  ann:    'blue-bright',
+  op:     'orange-mid',
+  attr:   'teal-bright',
+  tag:    'violet-bright',
+  tp:     'violet-bright',
+  wtp:    'violet-whisper',
+  esc:    'blue-dim',
+  pl:     'plain',
+  tmpl:   'violet-dim',
   ih:     'inlay',
   err:    'error',
   warn:   'warning',
@@ -70,6 +70,13 @@ const TOKEN_SLOTS = {
   gdel:   'pink-bright',
   todo:   'orange-mid',
   csscls: 'teal-bright',
+  mdcode:   'sand-bright',
+  mdmark:   'blue-dim',
+  mdhmark:  'violet-dim',
+  mdbold:   'teal-mid',
+  mdem:     'teal-mid',
+  mdstrike: 'teal-bright',
+  mdh:      'violet-mid',
 };
 
 // ── TOKEN_LABELS: css-class suffix → human label ─────────────────────────────
@@ -98,8 +105,15 @@ const TOKEN_LABELS = {
   gadd:   'Git added',
   gmod:   'Git modified',
   gdel:   'Git deleted',
-  todo:   'TODO highlight',
-  csscls: 'CSS class selector',
+  todo:     'TODO highlight',
+  csscls:   'CSS class selector',
+  mdcode:   'Markdown inline code span',
+  mdmark:   'Markdown syntax marker (**, *, `, ~~, >, -)',
+  mdhmark:  'Markdown header marker (#)',
+  mdbold:   'Markdown bold text',
+  mdem:     'Markdown italic text',
+  mdstrike: 'Markdown strikethrough text',
+  mdh:      'Markdown heading text',
 };
 
 // ── SLOT_TOKENS: slot → list of token keys that use it ───────────────────────
@@ -148,6 +162,24 @@ function applyPalette(pal) {
 .t-gdel   { background: var(--c-pink-bright);  display: inline-block; width: 3px; height: 18px; border-radius: 1px; vertical-align: middle; padding: 0; }
 .t-todo   { color: var(--c-orange-mid); font-weight: bold; }
 .t-csscls { color: var(--c-teal-bright); }
+.t-mdcode   { color: var(--c-sand-bright); background: #2a2e48; border-radius: 3px; padding: 1px 5px; }
+.t-mdmark   { color: var(--c-blue-dim); }
+.t-mdhmark  { color: var(--c-violet-dim); }
+.t-mdbold   { color: var(--c-teal-mid); font-weight: bold; }
+.t-mdem     { color: var(--c-teal-mid); font-style: italic; }
+.t-mdstrike { color: var(--c-teal-bright); text-decoration: line-through; }
+.t-mdh      { color: var(--c-violet-mid); font-weight: bold; }
+
+/* ── Markdown panel ──────────────────────────────────────────────── */
+#panel-md { white-space: normal; }
+.md-doc { max-width: 700px; line-height: 1.85; color: var(--c-plain); font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; }
+.md-h2 { font-size: 15px; font-weight: 700; color: var(--c-plain); margin: 22px 0 10px; }
+.md-h2:first-child { margin-top: 0; }
+.md-p  { margin-bottom: 8px; }
+.md-li { padding-left: 20px; margin-bottom: 5px; }
+.md-bold { font-weight: 700; }
+.md-em { font-style: italic; color: var(--c-comment); }
+.md-gap { height: 10px; }
 
 /* ── IDE Features panel ──────────────────────────────────────────── */
 #panel-ide { white-space: normal; }
@@ -528,6 +560,7 @@ body {
       <div class="tab" data-lang="json">JSON</div>
       <div class="tab" data-lang="sql">SQL</div>
       <div class="tab" data-lang="ide">IDE</div>
+      <div class="tab" data-lang="md">Markdown</div>
     </div>
 
     <div class="code-panels">
@@ -847,6 +880,39 @@ body {
           </div>
         </div>
 
+      </div>
+
+      <!-- Markdown ─────────────────────────────────────────────────── -->
+      <div class="code-panel" id="panel-md">
+        <div class="md-doc">
+
+          <div class="md-p"><span class="t t-mdhmark" data-tok="mdhmark">##</span> <span class="t t-mdh" data-tok="mdh">Context</span></div>
+          <div class="md-gap"></div>
+
+          <div class="md-p"><span class="t t-mdmark" data-tok="mdmark">**</span><span class="t t-mdbold" data-tok="mdbold">Validation chain (same order for all actions):</span><span class="t t-mdmark" data-tok="mdmark">**</span></div>
+          <div class="md-li"><span class="t t-mdmark" data-tok="mdmark">1.</span> Object null → ✗ <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">"Something went wrong."</span><span class="t t-mdmark" data-tok="mdmark">`</span> <span class="t t-mdmark" data-tok="mdmark">*</span><span class="t t-mdem" data-tok="mdem">(explicit guard)</span><span class="t t-mdmark" data-tok="mdmark">*</span></div>
+          <div class="md-li"><span class="t t-mdmark" data-tok="mdmark">2.</span> <span class="t t-mdmark" data-tok="mdmark">*</span><span class="t t-mdem" data-tok="mdem">(Existing object-state guards from other tickets slot here — do not displace)</span><span class="t t-mdmark" data-tok="mdmark">*</span></div>
+          <div class="md-li"><span class="t t-mdmark" data-tok="mdmark">3.</span> <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">IsInactive(party.Status)</span><span class="t t-mdmark" data-tok="mdmark">`</span> → ⚠ <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">"This X is inactive."</span><span class="t t-mdmark" data-tok="mdmark">`</span> <span class="t t-mdmark" data-tok="mdmark">*</span><span class="t t-mdem" data-tok="mdem">(explicit guard)</span><span class="t t-mdmark" data-tok="mdmark">*</span></div>
+          <div class="md-li"><span class="t t-mdmark" data-tok="mdmark">4.</span> Process action</div>
+          <div class="md-li"><span class="t t-mdmark" data-tok="mdmark">5.</span> Exception catch-all wrapping 1–4 → ✗ <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">"Something went wrong."</span><span class="t t-mdmark" data-tok="mdmark">`</span></div>
+          <div class="md-gap"></div>
+
+          <div class="md-p"><span class="t t-mdmark" data-tok="mdmark">**</span><span class="t t-mdbold" data-tok="mdbold">Status:</span><span class="t t-mdmark" data-tok="mdmark">**</span> <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">IsInactive()</span><span class="t t-mdmark" data-tok="mdmark">`</span> covers Inactive (200) + Suspended (300)</div>
+          <div class="md-gap"></div>
+
+          <div class="md-p"><span class="t t-mdmark" data-tok="mdmark">**</span><span class="t t-mdbold" data-tok="mdbold">Error display:</span><span class="t t-mdmark" data-tok="mdmark">**</span></div>
+          <div class="md-li"><span class="t t-mdmark" data-tok="mdmark">-</span> Dashboard → <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">ScriptManager</span><span class="t t-mdmark" data-tok="mdmark">`</span> snackbar, actor only</div>
+          <div class="md-li"><span class="t t-mdmark" data-tok="mdmark">-</span> Teams → update datatable card only, other recipients unchanged</div>
+          <div class="md-gap"></div>
+
+          <div class="md-p"><span class="t t-mdhmark" data-tok="mdhmark">##</span> <span class="t t-mdh" data-tok="mdh">Format showcase</span></div>
+          <div class="md-gap"></div>
+
+          <div class="md-p">This is <span class="t t-mdmark" data-tok="mdmark">**</span><span class="t t-mdbold" data-tok="mdbold">bold text</span><span class="t t-mdmark" data-tok="mdmark">**</span> and this is <span class="t t-mdmark" data-tok="mdmark">*</span><span class="t t-mdem" data-tok="mdem">italic text</span><span class="t t-mdmark" data-tok="mdmark">*</span> and this is <span class="t t-mdmark" data-tok="mdmark">~~</span><span class="t t-mdstrike" data-tok="mdstrike">strikethrough</span><span class="t t-mdmark" data-tok="mdmark">~~</span> and this is plain text.</div>
+          <div class="md-p">Inline code: <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">party.Validate()</span><span class="t t-mdmark" data-tok="mdmark">`</span> — the method returns <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">ValidationResult</span><span class="t t-mdmark" data-tok="mdmark">`</span>.</div>
+          <div class="md-p"><span class="t t-mdmark" data-tok="mdmark">**</span><span class="t t-mdbold" data-tok="mdbold">Bold</span><span class="t t-mdmark" data-tok="mdmark">**</span> and <span class="t t-mdmark" data-tok="mdmark">*</span><span class="t t-mdem" data-tok="mdem">italic</span><span class="t t-mdmark" data-tok="mdmark">*</span> can appear alongside <span class="t t-mdmark" data-tok="mdmark">`</span><span class="t t-mdcode" data-tok="mdcode">inline code</span><span class="t t-mdmark" data-tok="mdmark">`</span> in the same sentence.</div>
+
+        </div>
       </div>
 
     </div><!-- /code-panels -->
