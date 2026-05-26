@@ -765,13 +765,13 @@
     <option name="TAB_SELECTED">
       <value>
         <option name="FOREGROUND" value="c0caf5" />
-        <option name="BACKGROUND" value="21243a" />
+        <option name="BACKGROUND" value="252840" />
       </value>
     </option>
     <option name="TAB_SELECTED_INACTIVE">
       <value>
-        <option name="FOREGROUND" value="565f89" />
-        <option name="BACKGROUND" value="21243a" />
+        <option name="FOREGROUND" value="9199b8" />
+        <option name="BACKGROUND" value="232642" />
       </value>
     </option>
 

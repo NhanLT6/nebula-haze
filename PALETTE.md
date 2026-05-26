@@ -27,7 +27,7 @@
 |--------|----------|----------------|------------------------------------------------------------------------------------------------------------------------|
 | dim    | `7494c8` | 222°, 44%, 62% | Scrollbar thumb (rest), code vision dim, string escape, YAML list scalar                                               |
 | mid    | `8aabe6` | 222°, 62%, 72% | Function declaration/call, instance method, static method, extension method, CSS property name, JSON/YAML property key |
-| bright | `a5bcf0` | 222°, 72%, 79% | Annotation, metadata, hyperlink, tab underline, bookmark, scrollbar hover, code vision hovered                         |
+| bright | `a5bcf0` | 222°, 72%, 79% | Annotation, metadata, hyperlink, bookmark, scrollbar hover, code vision hovered                                        |
 
 ### Violet (~257°)
 

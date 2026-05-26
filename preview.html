@@ -398,6 +398,70 @@ body {
 .tab:hover { color: var(--c-plain); }
 .tab.active { color: var(--c-plain); border-bottom-color: var(--c-blue-bright); }
 
+/* ── IDE tab bar mock (island / new UI style) ────────────────────────────────── */
+.ide-tabs-section { margin: -22px -28px 20px; }
+.ide-state-label {
+  font-size: 10px;
+  color: #414868;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 8px 14px 3px;
+  background: #21243a;
+}
+.ide-tabs-mock {
+  background: #21243a;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 10px 8px;
+  border-bottom: 1px solid #2a2e48;
+  overflow: hidden;
+}
+.ide-tab-mock {
+  font-size: 12px;
+  padding: 5px 13px;
+  color: var(--ide-tab-inactive, #565f89);
+  border-radius: 6px;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ide-tab-mock.active {
+  color: var(--ide-tab-active, #c0caf5);
+  background: var(--ide-tab-active-bg, #21243a);
+  border: 1px solid var(--ide-tab-active-border, #2e3352);
+}
+.ide-tabs-mock.ide-inactive .ide-tab-mock.active {
+  color: var(--ide-tab-insel, #565f89);
+  background: var(--ide-tab-insel-bg, #21243a);
+  border: 1px solid var(--ide-tab-insel-border, #2a2e48);
+}
+.ide-tab-close {
+  font-size: 11px;
+  color: var(--c-comment);
+  opacity: 0.7;
+  line-height: 1;
+}
+
+/* Tab style switcher UI */
+.tab-style-opts { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; }
+.ts-btn {
+  background: #2a2e48;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--c-comment);
+  font-size: 10px;
+  padding: 4px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.ts-btn:hover { color: var(--c-plain); }
+.ts-btn.active-opt { border-color: var(--c-blue-bright); color: var(--c-blue-bright); }
+.ts-desc { font-size: 10px; color: #414868; font-style: italic; }
+
 .code-panels { flex: 1; overflow: hidden; position: relative; }
 .code-panel {
   display: none;
@@ -518,6 +582,18 @@ body {
             <div class="swatch-col"><div class="swatch" data-slot="inlay"   style="background:#565f89" onclick="swatchClick('inlay')"></div>   <div class="swatch-label">inh</div></div>
           </div>
         </div>
+      </div>
+
+      <!-- TAB STYLE -->
+      <div>
+        <div class="sb-section-label">Tab Style</div>
+        <div class="tab-style-opts">
+          <button class="ts-btn active-opt" id="ts-default" onclick="setTabStyle(null)">Default</button>
+          <button class="ts-btn" id="ts-a" onclick="setTabStyle('a')">A · Soft lift</button>
+          <button class="ts-btn" id="ts-b" onclick="setTabStyle('b')">B · Balanced</button>
+          <button class="ts-btn" id="ts-c" onclick="setTabStyle('c')">C · Bold</button>
+        </div>
+        <div class="ts-desc" id="ts-desc">inactive: #606480 (current, comment dim)</div>
       </div>
 
       <!-- INSPECTOR -->
@@ -823,6 +899,23 @@ body {
 
       <!-- IDE Features ─────────────────────────────────────────────── -->
       <div class="code-panel" id="panel-ide">
+
+        <div class="ide-tabs-section">
+          <div class="ide-state-label">Focused editor</div>
+          <div class="ide-tabs-mock">
+            <div class="ide-tab-mock">Default.aspx</div>
+            <div class="ide-tab-mock active">Placements\Applications\Default.aspx.cs<span class="ide-tab-close">×</span></div>
+            <div class="ide-tab-mock">Startup.cs</div>
+            <div class="ide-tab-mock">appsettings.json</div>
+          </div>
+          <div class="ide-state-label">Unfocused editor</div>
+          <div class="ide-tabs-mock ide-inactive">
+            <div class="ide-tab-mock">Default.aspx</div>
+            <div class="ide-tab-mock active">Placements\Applications\Default.aspx.cs<span class="ide-tab-close">×</span></div>
+            <div class="ide-tab-mock">Startup.cs</div>
+            <div class="ide-tab-mock">appsettings.json</div>
+          </div>
+        </div>
 
         <div class="ide-block">
           <div class="ide-label">Inlay hints</div>
@@ -1137,6 +1230,36 @@ document.querySelector('.code-panels').addEventListener('click', e => {
   const span = e.target.closest('.t[data-tok]');
   if (span) selectToken(span);
 });
+
+// ── Tab style switcher (IDE tab mock) ─────────────────────────────────────────
+const TS_OPTIONS = {
+  //                 unselected   focused-text  focused-bg   focused-border  unfocused-text  unfocused-bg  unfocused-border
+  default: { inactive:'#565f89', active:'#c0caf5', activeBg:'#21243a', activeBorder:'#2e3352', insel:'#565f89', inselBg:'#21243a', inselBorder:'#272a42' },
+  a:       { inactive:'#8087a6', active:'#c0caf5', activeBg:'#252840', activeBorder:'#363a58', insel:'#8087a6', inselBg:'#21243a', inselBorder:'#2e3352' },
+  b:       { inactive:'#9199b8', active:'#c0caf5', activeBg:'#252840', activeBorder:'#a5bcf0', insel:'#9199b8', inselBg:'#232642', inselBorder:'#363a58' },
+  c:       { inactive:'#a6adc8', active:'#c0caf5', activeBg:'#252840', activeBorder:'#9199b8', insel:'#a6adc8', inselBg:'#232642', inselBorder:'#5a5e8a' },
+};
+const TS_DESCS = {
+  default: 'Current — unselected: #565f89, unfocused active: #565f89',
+  a:       'A — unselected: #8087a6, island BG slightly lighter',
+  b:       'B — unselected: #9199b8 (violet tint), stronger island',
+  c:       'C — unselected: #a6adc8, island with violet border',
+};
+function setTabStyle(opt) {
+  const key = opt || 'default';
+  const o = TS_OPTIONS[key];
+  const r = document.documentElement.style;
+  r.setProperty('--ide-tab-inactive',      o.inactive);
+  r.setProperty('--ide-tab-active',        o.active);
+  r.setProperty('--ide-tab-active-bg',     o.activeBg);
+  r.setProperty('--ide-tab-active-border', o.activeBorder);
+  r.setProperty('--ide-tab-insel',         o.insel);
+  r.setProperty('--ide-tab-insel-bg',      o.inselBg);
+  r.setProperty('--ide-tab-insel-border',  o.inselBorder);
+  document.querySelectorAll('.ts-btn').forEach(b => b.classList.remove('active-opt'));
+  document.getElementById('ts-' + key).classList.add('active-opt');
+  document.getElementById('ts-desc').textContent = TS_DESCS[key];
+}
 
 // ── Tab switching ─────────────────────────────────────────────────────────────
 document.getElementById('lang-tabs').addEventListener('click', e => {
