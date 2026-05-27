@@ -5,7 +5,7 @@
   "transient_prompt": {
     "background": "transparent",
     "foreground": "#414868",
-    "template": "╰❯ "
+    "template": "❯ "
   },
   "blocks": [
     {
@@ -13,11 +13,16 @@
       "alignment": "left",
       "segments": [
         {
-          "type": "text",
+          "type": "git",
           "style": "plain",
           "background": "transparent",
-          "foreground": "transparent",
-          "template": "<#606480>⋆</><#9480c8>·</><#414868>-</> <#414868>⋅</> <#c2c0e8>󱃅</> <#606480>·</> <#414868>⋆</> <#606480>-</> <#414868>·</> <#9480c8>⊹</> <#9480c8>·</><#414868>·</> <#606480>-</>"
+          "foreground": "#8aabe6",
+          "template": "{{ if and (ne .Env.TERMINAL_EMULATOR \"JetBrains-JediTerm\") (ne .Env.TERM_PROGRAM \"vscode\") }} 󰘬 {{ if gt (len .HEAD) 20 }}{{ trunc 20 .HEAD }}…{{ else }}{{ .HEAD }}{{ end }}{{ if gt .Ahead 0 }} <#7ec8a0>↑{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }} <#e07891>↓{{ .Behind }}</>{{ end }}{{ if gt .Working.Changed 0 }} <#e0c97e>✱{{ .Working.Changed }}</>{{ end }}{{ if gt .Staging.Changed 0 }} <#7ec8a0>✚{{ .Staging.Changed }}</>{{ end }}{{ if gt .Working.Untracked 0 }} <#606480>?{{ .Working.Untracked }}</>{{ end }}{{ end }}",
+          "options": {
+            "fetch_status": true,
+            "fetch_upstream_icon": false,
+            "branch_icon": ""
+          }
         }
       ]
     },
@@ -27,17 +32,25 @@
       "newline": true,
       "segments": [
         {
-          "type": "shell",
+          "type": "text",
           "style": "plain",
           "background": "transparent",
           "foreground": "#6ec4b6",
-          "template": "󰝰"
+          "template": ""
+        },
+        {
+          "type": "shell",
+          "style": "plain",
+          "background": "#1c1d36",
+          "foreground": "#6ec4b6",
+          "template": " 󰝰"
         },
         {
           "type": "path",
           "style": "plain",
-          "background": "transparent",
+          "background": "#1c1d36",
           "foreground": "#6ec4b6",
+          "template": " {{ .Path }}",
           "options": {
             "style": "agnoster_short",
             "folder_separator_icon": "/",
@@ -47,16 +60,25 @@
           }
         },
         {
-          "type": "git",
+          "type": "node",
+          "style": "plain",
+          "background": "#1c1d36",
+          "foreground": "#7ec8a0",
+          "template": "  ·  <#606480>⬡</> {{ .Major }}.{{ .Minor }}"
+        },
+        {
+          "type": "dotnet",
+          "style": "plain",
+          "background": "#1c1d36",
+          "foreground": "#8aabe6",
+          "template": "  ·  <#606480>●</> {{ .Major }}.{{ .Minor }}"
+        },
+        {
+          "type": "text",
           "style": "plain",
           "background": "transparent",
-          "foreground": "#8aabe6",
-          "template": "{{ if and (ne .Env.TERMINAL_EMULATOR \"JetBrains-JediTerm\") (ne .Env.TERM_PROGRAM \"vscode\") }} <#606480>·</> <#7494c8>󰘬 </>{{ if gt (len .HEAD) 20 }}{{ trunc 20 .HEAD }}…{{ else }}{{ .HEAD }}{{ end }}{{ end }}",
-          "options": {
-            "fetch_status": false,
-            "fetch_upstream_icon": false,
-            "branch_icon": ""
-          }
+          "foreground": "#9480c8",
+          "template": " "
         }
       ]
     },
@@ -70,7 +92,7 @@
           "style": "plain",
           "background": "transparent",
           "foreground": "#9480c8",
-          "template": "{{ if gt .Code 0 }}<#e07891>󰅚 {{ .Code }}</>{{ else }}╰❯{{ end }}",
+          "template": "{{ if gt .Code 0 }}<#e07891>❯ {{ .Code }}</>{{ else }}<#9480c8>❯</>{{ end }}",
           "options": {
             "always_enabled": true
           }
