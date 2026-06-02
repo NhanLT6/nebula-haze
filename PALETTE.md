@@ -88,6 +88,8 @@
 | `79ad7b` → `9fd4ae` | Git-added (now green-bright)                 |
 | `a89e5c` → `d4d07a` | Git-modified (now sand-bright)               |
 | `c7778a` → `e0aabf` | Git-deleted (now pink-bright)                |
+| `1e3835`            | VCS annotation stripe bg 4 (dark teal)       |
+| `263d3a`            | VCS annotation stripe bg 5 (dark teal)       |
 
 ---
 

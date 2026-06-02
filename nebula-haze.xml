@@ -26,7 +26,7 @@
     <option name="CARET_ROW_COLOR" value="181a2c" />
     <option name="SELECTION_BACKGROUND" value="3c3465" />
     <option name="GUTTER_BACKGROUND" value="21243a" />
-    <option name="LINE_NUMBERS_COLOR" value="454d74" />
+    <option name="LINE_NUMBERS_COLOR" value="565f89" />
     <option name="LINE_NUMBER_ON_CARET_ROW_COLOR" value="737aa2" />
     <option name="RIGHT_MARGIN_COLOR" value="2a2e48" />
     <option name="INDENT_GUIDE" value="2a2e48" />
@@ -104,8 +104,8 @@
     <option name="VCS_ANNOTATIONS_COLOR_1" value="414868" />
     <option name="VCS_ANNOTATIONS_COLOR_2" value="2e3258" />
     <option name="VCS_ANNOTATIONS_COLOR_3" value="2a2e4a" />
-    <option name="VCS_ANNOTATIONS_COLOR_4" value="6ec4b6" />
-    <option name="VCS_ANNOTATIONS_COLOR_5" value="6ec4b6" />
+    <option name="VCS_ANNOTATIONS_COLOR_4" value="1e3835" />
+    <option name="VCS_ANNOTATIONS_COLOR_5" value="263d3a" />
 
     <!-- Diagrams -->
     <option name="DIAGRAM_NODE_BACKGROUND" value="21243a" />
@@ -796,7 +796,7 @@
     </option>
     <option name="BREADCRUMBS_INACTIVE">
       <value>
-        <option name="FOREGROUND" value="2a2e48" />
+        <option name="FOREGROUND" value="414868" />
         <option name="BACKGROUND" value="21243a" />
       </value>
     </option>
