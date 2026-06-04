@@ -271,6 +271,44 @@ vsce publish               # push to Marketplace
 
 ---
 
+## VSCode-Specific Features
+
+### Bracket Pair Colorization + Guides
+
+| Element | Slot type | Rationale |
+|---|---|---|
+| Bracket characters (all levels, inactive + active) | **mid** palette slots | Vivid enough to distinguish levels at a glance |
+| Active bracket character | mid slot + **bold weight** | Same color, weight differentiates without new hue |
+| Guide lines (inactive) | **dim** palette slots, 1px, ~22% opacity | Structural, should not compete with code |
+| Active guide line | dim slot, **2px**, ~60% opacity | Denser stroke signals "you are here" without brightness |
+| Active region background | teal.mid at 5% opacity | Subtle containment hint |
+
+Bracket color cycle (palette families in order):
+1. `blue.mid` `#8aabe6`
+2. `violet.mid` `#c498ff`
+3. `teal.mid` `#6ec4b6`
+4. `green.mid` `#96cc9e`
+5. `sand.mid` `#c5c28a`
+6. `orange` `#e09a68`
+
+Guide line dim colors follow the same cycle using dim slots.
+
+**Flutter note:** Flutter widget trees nest 5–6 levels deep routinely. The mid bracket colors provide clear level identification without flooding the viewport; dim guides provide hierarchy structure without brightness.
+
+### Sticky Scroll
+`editorStickyScroll.background` → `vscode.titleBar` (`#13152a`) — matches the popup/raised surface.
+
+### Inlay Hints
+`editorInlayHint.foreground` → `base.inlayHint` (`#565f89`), `editorInlayHint.background` → transparent. Direct carry-over from Rider.
+
+### Indent Guides
+`editorIndentGuide.background` → `base.chromeDim` (`#2a2e48`), active → `blue.bright` (`#a5bcf0`).
+
+### Editor Groups (split panes)
+Focused border → `violet.mid` (`#c498ff`), unfocused → `base.chromeDim` (`#2a2e48`).
+
+---
+
 ## Terminal ANSI Colors
 
 VSCode integrated terminal colors are part of the workbench `colors` section (keys like `terminal.ansiGreen`, `terminal.ansiBlue`, etc.) and will be mapped to palette slots during the Tokyo Night seeding pass. Mapping intent:
