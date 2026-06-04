@@ -5,7 +5,7 @@
     "lib": ["ES2020"],
     "strict": true,
     "esModuleInterop": true,
-    "rootDir": "."
+    "rootDir": ".."
   },
   "include": ["src/**/*", "../shared/**/*"]
 }
