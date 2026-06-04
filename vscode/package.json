@@ -1,0 +1,26 @@
+{
+  "name": "nebula-haze",
+  "displayName": "Nebula Haze",
+  "description": "A cool-toned dark theme with violet, teal, and blue - ported from JetBrains Rider",
+  "version": "0.1.0",
+  "publisher": "nebula-haze",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Nebula Haze",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nebula-haze-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "ts-node src/build.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
