@@ -11,19 +11,18 @@ Checks two categories:
 Exit 0 = all pairs pass.  Exit 1 = one or more fail.  Exit 2 = usage error.
 
 Run from repo root:
-    python audit-contrast.py
+    python tools/audit-contrast.py
 """
 
 import re
 import sys
+from pathlib import Path
 
-from xml.etree.ElementTree import Element  # type reference only — not used for parsing
+from xml.etree.ElementTree import Element  # type reference only
 try:
     import defusedxml.ElementTree as ET
 except ImportError:
-    print("ERROR: defusedxml is required. Run: pip install defusedxml")
-    sys.exit(2)
-
+    import xml.etree.ElementTree as ET
 # ── WCAG helpers ──────────────────────────────────────────────────────────────
 
 def _linearize(c: float) -> float:
@@ -143,9 +142,13 @@ def parse_attribute_pairs(root: Element) -> list[dict]:
 
 def main() -> None:
     try:
-        tree = ET.parse("nebula-haze.xml")
+        repo_root = Path(__file__).resolve().parents[1]
+        xml_path = repo_root / "rider" / "nebula-haze.xml"
+        if not xml_path.exists():
+            xml_path = repo_root / "nebula-haze.xml"
+        tree = ET.parse(xml_path)
     except FileNotFoundError:
-        print("ERROR: nebula-haze.xml not found — run from the repo root.")
+        print("ERROR: rider/nebula-haze.xml not found.")
         sys.exit(2)
 
     root   = tree.getroot()
