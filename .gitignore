@@ -1,2 +1,6 @@
 node_modules/
-releases/
+rider/releases/*.jar
+.superpowers/
+.idea/
+.serena/
+.claude/

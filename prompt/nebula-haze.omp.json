@@ -64,14 +64,14 @@
           "style": "plain",
           "background": "#1c1d36",
           "foreground": "#7ec8a0",
-          "template": "  ·  <#606480>⬡</> {{ .Major }}.{{ .Minor }}"
+          "template": "  ·  󰎙 {{ .Major }}.{{ .Minor }}"
         },
         {
           "type": "dotnet",
           "style": "plain",
           "background": "#1c1d36",
           "foreground": "#8aabe6",
-          "template": "  ·  <#606480>●</> {{ .Major }}.{{ .Minor }}"
+          "template": "  ·  󰪮 {{ .Major }}.{{ .Minor }}"
         },
         {
           "type": "text",
@@ -92,7 +92,7 @@
           "style": "plain",
           "background": "transparent",
           "foreground": "#9480c8",
-          "template": "{{ if gt .Code 0 }}<#e07891>❯ {{ .Code }}</>{{ else }}<#9480c8>❯</>{{ end }}",
+          "template": "{{ if gt .Code 0 }}<#e07891><b>❯</b> {{ .Code }}</>{{ else }}<#9480c8><b>❯</b></>{{ end }}",
           "options": {
             "always_enabled": true
           }
