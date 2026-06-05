@@ -96,9 +96,9 @@
     <option name="Scrollbar.Tabs.TransparentThumbColor" value="7494c880" />
 
     <!-- Tab underline -->
-    <option name="TAB_UNDERLINE" value="a5bcf0" />
-    <option name="TAB_UNDERLINE_INACTIVE" value="a5bcf080" />
-    <option name="MODIFIED_TAB_ICON" value="a5bcf0" />
+    <option name="TAB_UNDERLINE" value="6ec4b6" />
+    <option name="TAB_UNDERLINE_INACTIVE" value="6ec4b680" />
+    <option name="MODIFIED_TAB_ICON" value="6ec4b6" />
 
     <!-- VCS annotations -->
     <option name="VCS_ANNOTATIONS_COLOR_1" value="414868" />
