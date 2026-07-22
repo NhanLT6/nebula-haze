@@ -37,6 +37,7 @@ Six hue families, each with four shade levels. One exception (operators, outside
 | green | ~138° | Strings, interfaces, git-added |
 | pink | ~338° | HTML/XML/CSS tags, git-deleted |
 | sand | ~57°, cool-toned | Numbers, entities, null/undefined, git-modified |
+| coral | ~16°, warm | Added 2026-07-22 — parameters. First warm family; see amendment below |
 | **orange** | **~25°** | **Exception — operators only, not in shade system** |
 
 Amber is removed. Sand replaces it with no warm/orange cast.
@@ -228,3 +229,35 @@ These colors have strong semantic/conventional meaning and are not governed by t
 - Error/warning diagnostics — not changed (exempt by rule)
 - Console ANSI colors — follow syntax families but not audited in this pass
 - Rainbow brackets — these intentionally cycle through multiple families; reviewed separately
+
+---
+
+## Amendment 2026-07-22 — Coral family (warm), parameters recolored
+
+**Motivation.** Violet dominates the theme (keywords at violet-mid, classes + all tag names at violet-bright). To introduce warmth without disturbing that structure, add a single warm family and move one token group onto it. Parameters were chosen first: they were on teal-whisper `bdd8e8`, a near-plain-text slot, so recoloring them does not disturb any high-traffic syntax.
+
+**New family — coral (~16°, warm).** The palette's first warm family. Governance rule 2 (no new hue family without a spec update) is satisfied by this amendment.
+
+| Level | Hex | HSL (approx) | Uses |
+|-------|-----|--------------|------|
+| dim | — | — | Reserved (derive when needed) |
+| mid | `e6ab8e` | 20°, 64%, 73% | Parameter, reassigned parameter, JS/HTTP parameter, anonymous class parameter |
+| bright | — | — | Reserved |
+
+Only the mid slot is defined. Dim/bright/whisper are left undefined until a concrete use arises, rather than inventing unvalidated hexes.
+
+**Boundaries with existing warm-adjacent colors:**
+- **Orange singleton (`e09a68`, ~25°)** stays operators-only. Coral-mid is lighter (L≈73% vs ≈64%) and lands on identifier tokens (multi-glyph), so it reads distinctly from single-glyph operators despite the near hue.
+- **Pink (~338°)** is magenta/rose; coral is a genuinely warm hue, not a warmer pink.
+
+**Token moves.**
+
+| Old hex | Tokens | New hex | New slot |
+|---------|--------|---------|----------|
+| `bdd8e8` | `DEFAULT_PARAMETER`, `DEFAULT_REASSIGNED_PARAMETER` (fg + underline effect), `IMPLICIT_ANONYMOUS_CLASS_PARAMETER_ATTRIBUTES`, `HTTP_REQUEST_PARAMETER_NAME`, `JS.PARAMETER` | `e6ab8e` | coral-mid |
+
+Type parameters (`TS.TYPE_PARAMETER`, `TYPE_PARAMETER_NAME_ATTRIBUTES`, Scala/ReSharper type-param slots) are a different concept (generics, violet-whisper) and were **not** touched.
+
+**Side effect.** Teal-whisper `bdd8e8` is now unused — marked Reserved in `PALETTE.md`.
+
+**Presence note.** Parameters move from a whisper-level slot to a mid-level color, so they gain some presence relative to before. This was an intentional, eye-tested choice.

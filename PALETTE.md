@@ -42,7 +42,7 @@
 
 | Level   | Hex      | HSL (approx)   | Used for                                                                                                                        |
 |---------|----------|----------------|---------------------------------------------------------------------------------------------------------------------------------|
-| whisper | `bdd8e8` | 208°, 47%, 82% | Parameter, reassigned parameter, JS/HTTP parameter, anonymous class parameter                                                   |
+| whisper | `bdd8e8` | 208°, 47%, 82% | Reserved (was parameters — moved to coral-mid `e6ab8e` on 2026-07-22)                                                          |
 | dim     | `5a9e94` | 174°, 28%, 48% | Reserved                                                                                                                        |
 | mid     | `6ec4b6` | 173°, 42%, 60% | Constant, enum identifier, enum member, struct identifier (+ underline)                                                         |
 | bright  | `8fd4c8` | 173°, 48%, 69% | Protocol reference, list/map conversion, CSS class name, HTML/XML/JSX/Vue attribute names, event identifier, format string item |
@@ -70,6 +70,16 @@
 | dim    | `a8a578` | 57°, 17%, 56% | Reserved                                                                                 |
 | mid    | `c5c28a` | 57°, 34%, 66% | Number literal, entity, JS null/undefined/this/super, HTML/XML entity, regexp char class |
 | bright | `d4d07a` | 57°, 52%, 65% | Git-modified gutter                                                                      |
+
+### Coral (~16°, warm — added 2026-07-22)
+
+First warm family in the palette. Distinct from the Orange singleton (~25°, operators only — coral is lighter, softer, and lands on identifier tokens) and from Pink (~338°, magenta/rose). Only the mid slot is defined; derive dim/bright/whisper when a use arises.
+
+| Level  | Hex      | HSL (approx)  | Used for                                                                                          |
+|--------|----------|---------------|----------------------------------------------------------------------------------------------------|
+| dim    | —        | —             | Reserved                                                                                          |
+| mid    | `e6ab8e` | 20°, 64%, 73% | Parameter, reassigned parameter, JS/HTTP parameter, anonymous class parameter (level nickname: peach) |
+| bright | —        | —             | Reserved                                                                                          |
 
 ### Orange — exception
 
